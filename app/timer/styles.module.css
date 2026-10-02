@@ -1,0 +1,91 @@
+.container{
+    margin: 0 auto;
+    padding: 2;
+}
+
+
+.timer{
+    font-size: 40px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding: 2px;
+    background: rgb(255, 224, 249);
+    padding: 10px 30px;
+    margin: 8px;
+    border-radius: 20px;
+    border: 2px dotted rgb(243, 140, 158);
+    color: #fefefe;
+    
+}
+
+.button{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 4;
+    padding: 10px;
+    margin: 4px;
+}
+.hours{
+    padding: 4px 8px;
+    background: rgb(202, 251, 254);
+    border-radius: 20%;
+    border: none;
+    box-shadow:0 2px 0 rgb(255, 224, 249);
+    transition: .1s linear;
+    font-size: large;
+}
+.hours:active{
+    box-shadow: none;
+    transform: translateY(4px);
+}
+.minutes{
+    padding: 4px 8px;
+    background: rgb(255, 224, 249);
+    border-radius: 20%;
+    border: none;
+    box-shadow:0 2px 0 rgb(202, 251, 254);
+    transition: .1s linear;
+    font-size: large;
+}
+.minutes:active{
+    box-shadow: none;
+    transform: translateY(4px);
+}
+.seconds{
+    padding: 4px 8px;
+    background: rgb(202, 251, 254);
+    border-radius: 20%;
+    border: none;
+    box-shadow:0 2px 0 rgb(255, 224, 249);
+    transition: .1s linear;
+    font-size: large;
+}
+.seconds:active{
+    box-shadow: none;
+    transform: translateY(4px);
+}
+
+
+.wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4;
+    padding: 10px;
+    margin: 4px;
+}
+.timer_button{
+    padding: 4px 8px;
+    background: rgb(224, 106, 157);
+    color: #fff;
+    border-radius: 10px;
+    border: none;
+    box-shadow:0 2px 0 rgb(201, 68, 68);
+    transition: .1s linear;
+    font-size: large;
+}
+.timer_button:active{
+    box-shadow: none;
+    transform: translateY(4px);
+}
+
