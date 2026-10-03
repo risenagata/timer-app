@@ -6,6 +6,8 @@ import styles from './styles.module.css'
 export default function Timer(){
     const [totalSeconds,setTotalSeconds]=useState<number>(0)
     const [running,setRunning]=useState<boolean>(false)
+    const [alarmPlay,setAlarmPlay]=useState<boolean>(false)
+
     
 
     const hours=Math.floor(totalSeconds / 3600)
@@ -43,23 +45,37 @@ export default function Timer(){
         })
     }
 
+    // カウントダウン
     useEffect(()=>{
         if(!running)return
         if(totalSeconds === 0){
             setRunning(false)
+            setAlarmPlay(true)
             return
         }
         const startTimer=setInterval(()=>{
             setTotalSeconds((prev)=>{
                 if(prev <= 1){
                     setRunning(false)
+                    setAlarmPlay(true)
                     return 0
                 }
                 return prev -1
+            
             })
         },1000)
         return ()=>clearInterval(startTimer)
     },[running])
+
+    // 音楽鳴らす
+    useEffect(()=>{
+        if(!alarmPlay)return
+        setAlarmPlay(false)
+        const audio=new Audio('/alarm.mp3')
+        if(alarmPlay){
+            audio.play()
+        }
+    },[alarmPlay])
 
     return(
         <>
