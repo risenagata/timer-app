@@ -1,13 +1,13 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import styles from './styles.module.css'
 
 export default function Timer(){
     const [totalSeconds,setTotalSeconds]=useState<number>(0)
     const [running,setRunning]=useState<boolean>(false)
     const [alarmPlay,setAlarmPlay]=useState<boolean>(false)
-
+    const audioRef=useRef<HTMLAudioElement | null>(null)
     
 
     const hours=Math.floor(totalSeconds / 3600)
@@ -45,6 +45,14 @@ export default function Timer(){
         })
     }
 
+    const stopTimer=()=>{
+        setRunning(false)
+        if(alarmPlay){
+            audioRef.current?.pause()
+            setAlarmPlay(false)
+        }
+    }
+
     // カウントダウン
     useEffect(()=>{
         if(!running)return
@@ -70,11 +78,10 @@ export default function Timer(){
     // 音楽鳴らす
     useEffect(()=>{
         if(!alarmPlay)return
-        setAlarmPlay(false)
         const audio=new Audio('/alarm.mp3')
-        if(alarmPlay){
-            audio.play()
-        }
+        audio.loop=true
+        audioRef.current=audio
+        audio.play()
     },[alarmPlay])
 
     return(
@@ -97,7 +104,7 @@ export default function Timer(){
             </div>
             <div className={styles.wrapper}>
                 <button className={styles.timer_button} onClick={()=>setRunning(true)}>スタート</button>
-                <button className={styles.timer_button} onClick={()=>setRunning(false)}>ストップ</button>
+                <button className={styles.timer_button} onClick={stopTimer}>ストップ</button>
                 <button className={styles.timer_button} onClick={()=>setTotalSeconds(0)}>リセット</button>
             </div>      
         </>
